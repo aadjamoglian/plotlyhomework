@@ -92,23 +92,26 @@ d3.json("samples.json").then((data) => {
         for (i = 0; i < data.samples.length; i++) {
             if (dataset == data.samples[i].id) {
             
-            x = data.samples[i].sample_values.slice(0,10).reverse()
-            y = data.samples[i].otu_ids.slice(0,10).reverse().map(x => `OTU ${x}`)
-            text = data.samples[i].otu_labels.slice(0,10).reverse()
-            
+                x = data.samples[i].sample_values.slice(0,10).reverse()
+                y = data.samples[i].otu_ids.slice(0,10).reverse().map(x => `OTU ${x}`)
+                text = data.samples[i].otu_labels.slice(0,10).reverse()
+                
 
-            console.log(x)
-            console.log(y)
-            console.log(text)
+                console.log(x)
+                console.log(y)
+                console.log(text)
 
-            // Meta
-            var panel = d3.select("#sample-metadata");
-            panel.selectAll("h6").remove()
-            console.log(data.metadata[i])
-            Object.entries(data.metadata[i]).forEach(([key, value]) => {
-            panel.append("h6").text(`${key}:${value}`)
+                // Meta
+                var panel = d3.select("#sample-metadata");
+                panel.selectAll("h6").remove()
+                console.log(data.metadata[i])
+                Object.entries(data.metadata[i]).forEach(([key, value]) => {
+                panel.append("h6").text(`${key}:${value}`)
+                })
+
+
+
             
-            })
 
 
             }
@@ -121,6 +124,8 @@ d3.json("samples.json").then((data) => {
         Plotly.restyle("bar", "x", [x]);
         Plotly.restyle("bar", "y", [y]);
         Plotly.restyle("bar", "text", text);
+        Plotly.restyle("bubble", "x", [x])
+        Plotly.restyle("bubble", "y", [y])
 
 
 
